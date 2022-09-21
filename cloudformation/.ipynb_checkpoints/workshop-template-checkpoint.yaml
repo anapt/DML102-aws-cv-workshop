@@ -1,0 +1,71 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: >
+    This template deploys resources needed for the Introduction to CV on AWS Workshop
+
+Resources:
+
+# NOTEBOOK -----------------------------------------------------
+  NotebookInstance:
+    Type: AWS::SageMaker::NotebookInstance
+    Properties:
+      InstanceType: "ml.m5.2xlarge"
+      RoleArn: !GetAtt ExecutionRole.Arn
+      #SubnetId: !Ref Subnet1
+      #SecurityGroupIds:
+      #  - !Ref SecurityGroup
+      #DefaultCodeRepository: !Ref DefaultCodeRepository
+      VolumeSizeInGB: 800
+  
+  ExecutionRole: 
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Principal: 
+              Service: 
+                - "sagemaker.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Path: "/"
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
+        - arn:aws:iam::aws:policy/AmazonRekognitionFullAccess
+      Policies:
+        - 
+          PolicyName: "s3_access"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - 
+                Effect: "Allow"
+                Action: 
+                  - "s3:PutBucketPolicy"
+                  - "s3:DeleteBucket"
+                Resource: [
+                  "arn:aws:s3:::sagemaker-*",
+                  !GetAtt WorkshopBucket.Arn
+                  ]             
+# END NOTEBOOK -------------------------------------------------
+
+# S3 BUCKET ----------------------------------------------------
+  WorkshopBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        VersioningConfiguration:
+          Status: Enabled
+        BucketName: !Sub dml102-20221003-sagemaker-bucket-${AWS::Region}-${AWS::AccountId}
+  
+
+# END S3 BUCKET ------------------------------------------------
+
+Outputs:
+
+  NotebookInstance:
+    Value: !GetAtt NotebookInstance.NotebookInstanceName
+  WorkshopBucket:
+    Value: !GetAtt WorkshopBucket.Arn
