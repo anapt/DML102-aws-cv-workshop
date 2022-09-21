@@ -23,8 +23,8 @@
 ### 7. You will see JupyterLab User interface. Go to Git -> Clone a Repository option from the Main menu as shown below
 ![Event engine screen](img/Notebook-3.png)
 
-### 8. Enter "https://github.com/dhawalkp/MLR402-reMARS-workshop.git" URL to clone the repo as shown below
+### 8. Enter "https://github.com/anapt/DML102-aws-cv-workshop.git" URL to clone the repo as shown below
 ![Event engine screen](img/Notebook-4.png)
 
-### 9. Once the cloning finishes, Go to the folder created with name "MLR402-reMARS-workshop". Click on "1_train_gptj_smp_tensor_parallel.ipynb" notebook and follow the instructions in this notebook
+### 9. Once the cloning finishes, Go to the folder created with name " DML102-aws-cv-workshop". Click on ".ipynb" notebook and follow the instructions in this notebook
 ![Event engine screen](img/Notebook-5.png)
