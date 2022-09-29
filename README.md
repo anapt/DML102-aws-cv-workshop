@@ -26,5 +26,5 @@
 ### 8. Enter "https://github.com/anapt/DML102-aws-cv-workshop.git" URL to clone the repo as shown below
 ![Event engine screen](img/Notebook-4.png)
 
-### 9. Once the cloning finishes, Go to the folder created with name " DML102-aws-cv-workshop". Click on ".ipynb" notebook and follow the instructions in this notebook
+### 9. Once the cloning finishes, Go to the folder created with name " DML102-aws-cv-workshop". Click on "1-rekognition-image-apis.ipynb" notebook and follow the instructions in this notebook
 ![Event engine screen](img/Notebook-5.png)
